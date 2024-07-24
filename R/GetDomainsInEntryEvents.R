@@ -1,3 +1,9 @@
+#' Get Domains in Cohort Entry Events
+#'
+#' This function retrieves the unique domains present in the cohort entry events of an OHDSI Circe cohort definition.
+#'
+#' @param cohortDefinition A list representing the OHDSI Circe cohort definition.
+#' @return A list containing the unique domains, the number of unique domains, and a tibble indicating the presence of each domain.
 #' @export
 getDomainsInEntryEvents <- function(cohortDefinition) {
   cohortEntryEvents <-

@@ -13,21 +13,10 @@ Depends:
 	DatabaseConnector (>= 5.0.0),
 	R (>= 4.1.0)
 Imports:
-    checkmate,
-    dplyr,
-    lifecycle,
-    ParallelLogger,
-    SqlRender
+    dplyr
 Suggests:
-  Eunomia,
-  remotes,
-  rmarkdown,
-  knitr,
-	testthat,
-	withr
+	testthat
 Remotes:
-  ohdsi/Eunomia,
-  ohdsi/ParallelLogger
 License: Apache License
 RoxygenNote: 7.3.1
 VignetteBuilder: knitr
