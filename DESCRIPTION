@@ -1,0 +1,38 @@
+Package: CirceComparator
+Type: Package
+Title: CirceComparator: To enable comparison of two or more circe compatible cohort definitions.
+Version: 0.0.1
+Date: 2024-07-24
+Authors@R: c(
+    person("Gowtham", "Rao", email = "rao@ohdsi.org", role = c("aut", "cre")),
+    person("Observational Health Data Science and Informatics", role = c("cph"))
+  )
+Maintainer: Gowtham Rao <rao@ohdsi.org>
+Description: The CirceComparator R package performs pair wise comparison of one or more cohort definitions generated with circe to help surface similarities and differences.
+Depends:
+	DatabaseConnector (>= 5.0.0),
+	R (>= 4.1.0)
+Imports:
+    checkmate,
+    dplyr,
+    lifecycle,
+    ParallelLogger,
+    SqlRender
+Suggests:
+  Eunomia,
+  remotes,
+  rmarkdown,
+  knitr,
+	testthat,
+	withr
+Remotes:
+  ohdsi/Eunomia,
+  ohdsi/ParallelLogger
+License: Apache License
+RoxygenNote: 7.3.1
+VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)
+Encoding: UTF-8
+Language: en-US
+URL: https://ohdsi.github.io/CirceComparator/, https://github.com/OHDSI/CirceComparator
+BugReports: https://github.com/OHDSI/CirceComparator/issues
