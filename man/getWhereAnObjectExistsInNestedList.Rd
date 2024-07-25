@@ -7,7 +7,7 @@
 getWhereAnObjectExistsInNestedList(nestedList, object)
 }
 \arguments{
-\item{nestedList}{A nested list in which to search for the object.}
+\item{nestedList}{A nested named list in which to search for the object.}
 
 \item{object}{A character string specifying the name of the object to search for.}
 }

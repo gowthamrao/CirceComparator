@@ -52,6 +52,48 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
     stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
                                         textToSearch = "washout") |> as.integer()
   
+  hasConditionStatusInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
+                                        textToSearch = "ConditionStatus") |> as.integer()
+  
+  hasConditionTypeInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
+                                        textToSearch = "ConditionType") |> as.integer()
+  
+  hasProcedureTypeInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
+                                        textToSearch = "ProcedureType") |> as.integer()
+  
+  hasObservationTypeInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
+                                        textToSearch = "ObservationType") |> as.integer()
+  
+  hasDrugTypeInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
+                                        textToSearch = "DrugType") |> as.integer()
+
+  
+  hasConditionStatus <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
+                                        textToSearch = "ConditionStatus") |> as.integer()
+  
+  hasConditionType <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
+                                        textToSearch = "ConditionType") |> as.integer()
+  
+  hasProcedureType <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
+                                        textToSearch = "ProcedureType") |> as.integer()
+  
+  hasObservationType <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
+                                        textToSearch = "ObservationType") |> as.integer()
+  
+  hasDrugType <-
+    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
+                                        textToSearch = "DrugType") |> as.integer()
+  
+  
   inclusionRuleQualifyingEventLimit <-
     getInclusionRuleQualifyingEventLimit(cohortDefinition = cohortDefinition)
   
@@ -93,7 +135,19 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
     demographicCriteriaGender = demographicCriteriaGender,
     useOfObservationPeriodInclusionRule = useOfObservationPeriodInclusionRule,
     restrictedByVisit = restrictedByVisit,
-    hasWashoutInText = hasWashoutInText
+    hasWashoutInText = hasWashoutInText,
+    cohortNameFromWebApi = cohortDefinition$name,
+    cohortIdFromWebApi = cohortDefinition$id,
+    hasConditionStatusInPrimaryCriteria = hasConditionStatusInPrimaryCriteria,
+    hasConditionTypeInPrimaryCriteria = hasConditionTypeInPrimaryCriteria,
+    hasProcedureTypeInPrimaryCriteria = hasProcedureTypeInPrimaryCriteria,
+    hasObservationTypeInPrimaryCriteria = hasObservationTypeInPrimaryCriteria,
+    hasDrugTypeInPrimaryCriteria = hasDrugTypeInPrimaryCriteria,
+    hasConditionStatus = hasConditionStatus,
+    hasConditionType = hasConditionType,
+    hasProcedureType = hasProcedureType,
+    hasObservationType = hasObservationType,
+    hasDrugType = hasDrugType
   )
   
   if (nrow(domainsInEntryEventCriteria$domains) > 0) {

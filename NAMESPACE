@@ -2,9 +2,11 @@
 
 export(areCohortEventsRestrictedByVisit)
 export(checkIfObjectExistsInNestedList)
+export(extractConceptSetsInCohortDefinition)
 export(getContinuousPriorObservationPeriodRequirement)
 export(getDomainsInEntryEvents)
 export(getInclusionRuleQualifyingEventLimit)
+export(getIndexConceptSetsInEntryEvents)
 export(getInitialEventLimit)
 export(getInitialEventRestrictionAdditionalCriteriaLimit)
 export(getNumberOfCohortEntryEvents)
