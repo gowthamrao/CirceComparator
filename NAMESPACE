@@ -3,7 +3,6 @@
 export(areCohortEventsRestrictedByVisit)
 export(checkIfObjectExistsInNestedList)
 export(extractConceptSetsInCohortDefinition)
-export(extractPathsAndDepths)
 export(extractPathsDepthsAndValues)
 export(getContinuousPriorObservationPeriodRequirement)
 export(getDomainsInEntryEvents)

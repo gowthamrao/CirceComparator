@@ -14,7 +14,7 @@
 #'   If provided, the function will return only the paths, depths, and values for elements
 #'   matching this name. If `NULL`, all elements are included. Defaults to `NULL`.
 #'
-#' @return A data frame with three columns: "Path", "Depth", and "Value",
+#' @return A data frame with three columns: "path", "depth", and "value",
 #'   where each row represents an element in the nested list.
 #'
 #' @export
@@ -28,21 +28,24 @@ extractPathsDepthsAndValues <- function(nestedList,
     value = character(0),
     stringsAsFactors = FALSE
   )
-  
+
   for (i in seq_along(nestedList)) {
     name <- names(nestedList)[i]
     if (is.null(name) || name == "") {
-      name <- "_"  # Use "_" for unnamed elements
+      name <- "_" # Use "_" for unnamed elements
     }
-    newPath <- if (currentPath == "")
+    newPath <- if (currentPath == "") {
       name
-    else
+    } else {
       paste0(currentPath, "$", name)
-    
+    }
+
     if (is.list(nestedList[[i]])) {
       # Recurse into the nested list
-      results <- rbind(results,
-                       extractPathsDepthsAndValues(nestedList[[i]], newPath, depth + 1, item))
+      results <- rbind(
+        results,
+        extractPathsDepthsAndValues(nestedList[[i]], newPath, depth + 1, item)
+      )
     } else {
       # Store the path, depth, and value only if the name matches the item, or if item is NULL
       if (is.null(item) || name == item) {
@@ -58,6 +61,6 @@ extractPathsDepthsAndValues <- function(nestedList,
       }
     }
   }
-  
+
   return(results)
 }

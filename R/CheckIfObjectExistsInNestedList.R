@@ -8,8 +8,8 @@
 #' @export
 checkIfObjectExistsInNestedList <- function(nestedList, object) {
   # Use extractPathsAndDepths to find all paths for the specified object
-  pathsAndDepths <- extractPathsAndDepths(nestedList, item = object)
-  
+  pathsAndDepthsValues <- extractPathsDepthsAndValues(nestedList, item = object)
+
   # If the length of the result is greater than 0, the object exists
-  return(length(pathsAndDepths) > 0)
+  return(nrow(pathsAndDepthsValues) > 0)
 }

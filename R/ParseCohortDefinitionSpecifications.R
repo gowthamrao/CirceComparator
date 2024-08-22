@@ -213,10 +213,10 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   for (i in (1:length(combined))) {
     browser()
     whereExists <-
-      extractPathsDepthsAndValues(nestedList = cohortDefinition, object = combined[[i]])
-    
+      extractPathsDepthsAndValues(nestedList = cohortDefinition, item = combined[[i]])
+
     browser()
-    
+
     if (nrow(whereExists) > 0) {
       report <- report |>
         tidyr::crossing(whereExists)

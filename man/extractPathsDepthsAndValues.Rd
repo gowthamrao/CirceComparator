@@ -25,7 +25,7 @@ If provided, the function will return only the paths, depths, and values for ele
 matching this name. If \code{NULL}, all elements are included. Defaults to \code{NULL}.}
 }
 \value{
-A data frame with three columns: "Path", "Depth", and "Value",
+A data frame with three columns: "path", "depth", and "value",
 where each row represents an element in the nested list.
 }
 \description{
