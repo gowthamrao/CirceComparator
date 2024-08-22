@@ -13,9 +13,72 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
+    <loc>/reference/areCohortEventsRestrictedByVisit.html</loc>
+  </url>
+  <url>
+    <loc>/reference/checkIfObjectExistsInNestedList.html</loc>
+  </url>
+  <url>
     <loc>/reference/CirceComparator-package.html</loc>
   </url>
   <url>
+    <loc>/reference/convertConceptSetExpressionToDataFrame.html</loc>
+  </url>
+  <url>
+    <loc>/reference/DrugExposure-package.html</loc>
+  </url>
+  <url>
+    <loc>/reference/extractConceptSetsInCohortDefinition.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getContinuousPriorObservationPeriodRequirement.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getDomainsInEntryEvents.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getInclusionRuleQualifyingEventLimit.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getIndexConceptSetsInEntryEvents.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getInitialEventLimit.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getInitialEventRestrictionAdditionalCriteriaLimit.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getNumberOfCohortEntryEvents.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getNumberOfConceptSets.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getNumberOfInclusionRules.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getWhereAnObjectExistsInNestedList.html</loc>
+  </url>
+  <url>
+    <loc>/reference/hasInitialEventRestrictionAdditionalCriteria.html</loc>
+  </url>
+  <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/parseCohortDefinitionSpecifications.html</loc>
+  </url>
+  <url>
+    <loc>/reference/readCensorWindow.html</loc>
+  </url>
+  <url>
+    <loc>/reference/readCohortExit.html</loc>
+  </url>
+  <url>
+    <loc>/reference/readCollapseSettings.html</loc>
+  </url>
+  <url>
+    <loc>/reference/stringPresentInCohortDefinitionText.html</loc>
   </url>
 </urlset>
