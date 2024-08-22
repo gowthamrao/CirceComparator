@@ -9,7 +9,7 @@
 getWhereAnObjectExistsInNestedList <- function(nestedList, object) {
   namedItems <- c()
   for (i in (1:length(nestedList))) {
-    if (checkIfObjectExistsInNestedList(nestedList = nestedList[[i]], object = object)) {
+    if (checkIfObjectExistsInNestedList(nestedList = nestedList[i], object = object)) {
       namedItems <- c(namedItems, names(nestedList)[[i]])
     }
   }
@@ -20,7 +20,7 @@ getWhereAnObjectExistsInNestedList <- function(nestedList, object) {
     namedItemsDf <-
       dplyr::tibble(namedItems = namedItems |> unique() |> sort()) |>
       dplyr::mutate(value = 1) |>
-      dplyr::mutate(newName = paste0("criteriaLocation", object, namedItems)) |>
+      dplyr::mutate(newName = paste0("criteriaLocation", namedItems)) |>
       dplyr::select("newName", "value") |>
       tidyr::pivot_wider(
         names_from  = "newName",

@@ -213,6 +213,9 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   for (i in (1:length(combined))) {
     whereExists <-
       getWhereAnObjectExistsInNestedList(nestedList = cohortDefinition, object = combined[[i]])
+    
+    browser()
+    
     if (nrow(whereExists) > 0) {
       report <- report |>
         tidyr::crossing(whereExists)

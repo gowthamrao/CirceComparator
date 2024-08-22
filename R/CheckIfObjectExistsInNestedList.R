@@ -6,18 +6,10 @@
 #' @param object A character string specifying the name of the object to search for.
 #' @return A logical value indicating whether the object exists within the nested list.
 #' @export
-checkIfObjectExistsInNestedList <- function(nestedList,
-                                            object) {
-  if (is.list(nestedList)) {
-    if (object %in% names(nestedList)) {
-      return(TRUE)
-    } else {
-      for (subList in nestedList) {
-        if (checkIfObjectExistsInNestedList(nestedList = subList, object = object)) {
-          return(TRUE)
-        }
-      }
-    }
-  }
-  return(FALSE)
+checkIfObjectExistsInNestedList <- function(nestedList, object) {
+  # Use extractPathsAndDepths to find all paths for the specified object
+  pathsAndDepths <- extractPathsAndDepths(nestedList, item = object)
+  
+  # If the length of the result is greater than 0, the object exists
+  return(length(pathsAndDepths) > 0)
 }

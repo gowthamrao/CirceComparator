@@ -3,7 +3,9 @@ library(testthat)
 library(dplyr)
 library(tidyr)
 
-# Assume the checkIfObjectExistsInNestedList function is defined or loaded from the same package
+library(testthat)
+library(dplyr)
+
 
 # Simple tests for the getWhereAnObjectExistsInNestedList function
 test_that("Object is directly in the list", {
