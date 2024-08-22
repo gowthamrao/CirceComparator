@@ -29,22 +29,22 @@ extractConceptSetsInCohortDefinition <-
     } else {
       expression <- cohortDefinition
     }
-    
+
     # extract concept set expression from cohort expression
     conceptSetExpression <-
       extractConceptSetExpressionsFromCohortExpression(cohortExpression = expression)
-    
+
     if (is.null(conceptSetExpression)) {
       stop("No concept set expressions found in cohort expression")
     }
-    
+
     primaryCriterias <-
       expression$PrimaryCriteria$CriteriaList
     codeSetsIdsInPrimaryCriteria <- c()
-    
+
     for (i in (1:length(primaryCriterias))) {
       codesets <- primaryCriterias[[i]][[1]]
-      
+
       if (typeof(codesets) == "list") {
         if (!is.null(codesets$CodesetId)) {
           codeSetsIdsInPrimaryCriteria <- c(codeSetsIdsInPrimaryCriteria, codesets$CodesetId) |>
@@ -59,17 +59,19 @@ extractConceptSetsInCohortDefinition <-
         }
       }
     }
-    
+
     conceptSetExpression2 <- list()
     conceptSetExpressionMetaData <- list()
-    
+
     for (j in (1:nrow(conceptSetExpression))) {
       conceptSetExpression2[[j]] <- conceptSetExpression[j, ]
-      
+
       conceptSetDataFrame <-
-        convertConceptSetExpressionToDataFrame(conceptSetExpression =
-                                                 conceptSetExpression2[[j]][1, ]$conceptSetExpression |>
-                                                 RJSONIO::fromJSON(digits = 23))
+        convertConceptSetExpressionToDataFrame(
+          conceptSetExpression =
+            conceptSetExpression2[[j]][1, ]$conceptSetExpression |>
+              RJSONIO::fromJSON(digits = 23)
+        )
       conceptSetExpressionMetaData[[j]] <-
         conceptSetExpression2[[j]][1, ] |>
         dplyr::select("conceptSetId") |>
@@ -119,12 +121,12 @@ extractConceptSetsInCohortDefinition <-
           ),
           countCondition =
             conceptSetDataFrame |>
-            dplyr::filter(
-              stringr::str_detect(string = tolower(.data$domainId), pattern = "condition")
-            ) |>
-            dplyr::select("conceptId") |>
-            dplyr::distinct() |>
-            nrow(),
+              dplyr::filter(
+                stringr::str_detect(string = tolower(.data$domainId), pattern = "condition")
+              ) |>
+              dplyr::select("conceptId") |>
+              dplyr::distinct() |>
+              nrow(),
           hasProcedure = as.integer(
             conceptSetDataFrame |>
               dplyr::filter(
@@ -134,12 +136,12 @@ extractConceptSetsInCohortDefinition <-
           ),
           countProcedure =
             conceptSetDataFrame |>
-            dplyr::filter(
-              stringr::str_detect(string = tolower(.data$domainId), pattern = "procedure")
-            ) |>
-            dplyr::select("conceptId") |>
-            dplyr::distinct() |>
-            nrow(),
+              dplyr::filter(
+                stringr::str_detect(string = tolower(.data$domainId), pattern = "procedure")
+              ) |>
+              dplyr::select("conceptId") |>
+              dplyr::distinct() |>
+              nrow(),
           hasDevice = as.integer(
             conceptSetDataFrame |>
               dplyr::filter(stringr::str_detect(
@@ -149,12 +151,12 @@ extractConceptSetsInCohortDefinition <-
           ),
           countDevice =
             conceptSetDataFrame |>
-            dplyr::filter(stringr::str_detect(
-              string = tolower(.data$domainId), pattern = "device"
-            )) |>
-            dplyr::select("conceptId") |>
-            dplyr::distinct() |>
-            nrow(),
+              dplyr::filter(stringr::str_detect(
+                string = tolower(.data$domainId), pattern = "device"
+              )) |>
+              dplyr::select("conceptId") |>
+              dplyr::distinct() |>
+              nrow(),
           hasDrug = as.integer(
             conceptSetDataFrame |>
               dplyr::filter(stringr::str_detect(
@@ -164,12 +166,12 @@ extractConceptSetsInCohortDefinition <-
           ),
           countDrug =
             conceptSetDataFrame |>
-            dplyr::filter(stringr::str_detect(
-              string = tolower(.data$domainId), pattern = "drug"
-            )) |>
-            dplyr::select("conceptId") |>
-            dplyr::distinct() |>
-            nrow(),
+              dplyr::filter(stringr::str_detect(
+                string = tolower(.data$domainId), pattern = "drug"
+              )) |>
+              dplyr::select("conceptId") |>
+              dplyr::distinct() |>
+              nrow(),
           hasObservation = as.integer(
             conceptSetDataFrame |>
               dplyr::filter(
@@ -179,12 +181,12 @@ extractConceptSetsInCohortDefinition <-
           ),
           countObservation =
             conceptSetDataFrame |>
-            dplyr::filter(
-              stringr::str_detect(string = tolower(.data$domainId), pattern = "observation")
-            ) |>
-            dplyr::select("conceptId") |>
-            dplyr::distinct() |>
-            nrow(),
+              dplyr::filter(
+                stringr::str_detect(string = tolower(.data$domainId), pattern = "observation")
+              ) |>
+              dplyr::select("conceptId") |>
+              dplyr::distinct() |>
+              nrow(),
           hasVisit = as.integer(
             conceptSetDataFrame |>
               dplyr::filter(stringr::str_detect(
@@ -194,13 +196,12 @@ extractConceptSetsInCohortDefinition <-
           ),
           countVisit =
             conceptSetDataFrame |>
-            dplyr::filter(stringr::str_detect(
-              string = tolower(.data$domainId), pattern = "visit"
-            )) |>
-            dplyr::select("conceptId") |>
-            dplyr::distinct() |>
-            nrow()
-          ,
+              dplyr::filter(stringr::str_detect(
+                string = tolower(.data$domainId), pattern = "visit"
+              )) |>
+              dplyr::select("conceptId") |>
+              dplyr::distinct() |>
+              nrow(),
           hasType = as.integer(
             conceptSetDataFrame |>
               dplyr::filter(stringr::str_detect(
@@ -210,12 +211,12 @@ extractConceptSetsInCohortDefinition <-
           ),
           countType =
             conceptSetDataFrame |>
-            dplyr::filter(stringr::str_detect(
-              string = tolower(,data$domainId), pattern = "type"
-            )) |>
-            dplyr::select("conceptId") |>
-            dplyr::distinct() |>
-            nrow(),
+              dplyr::filter(stringr::str_detect(
+                string = tolower(.data$domainId), pattern = "type"
+              )) |>
+              dplyr::select("conceptId") |>
+              dplyr::distinct() |>
+              nrow(),
           isSelectedIncludeMapped = max(as.integer(conceptSetDataFrame$includeMapped)),
           isSelectedIncludeDescendants = max(as.integer(
             conceptSetDataFrame$includeDescendants
@@ -245,7 +246,7 @@ extractConceptSetsInCohortDefinition <-
               dplyr::filter(
                 stringr::str_detect(string = .data$conceptSetId, pattern = "S")
               ) |>
-              dplyr::pull(conceptId) |>
+              dplyr::pull("conceptId") |>
               unique()
           ),
           numberOfUniqueConceptIdIsNonStandard = length(
@@ -261,25 +262,27 @@ extractConceptSetsInCohortDefinition <-
               unique()
           )
         )
-      
+
       conceptSetExpression2[[j]]$conceptSetExpressionSignature <-
         conceptSetDataFrame |>
-        dplyr::select("conceptId",
-                      "includeDescendants",
-                      "includeMapped",
-                      "isExcluded") |>
+        dplyr::select(
+          "conceptId",
+          "includeDescendants",
+          "includeMapped",
+          "isExcluded"
+        ) |>
         dplyr::distinct() |>
         dplyr::arrange(conceptId) |>
         RJSONIO::toJSON(digits = 23, pretty = TRUE)
     }
-    
+
     conceptSetExpressionMetaData <-
       dplyr::bind_rows(conceptSetExpressionMetaData)
-    
+
     conceptSetExpression <-
       dplyr::bind_rows(conceptSetExpression2) |>
       dplyr::mutate(conceptSetUsedInEntryEvent = 0)
-    
+
     if (length(codeSetsIdsInPrimaryCriteria) > 0) {
       conceptSetExpression <- conceptSetExpression |>
         dplyr::select(-"conceptSetUsedInEntryEvent") |>
@@ -290,22 +293,22 @@ extractConceptSetsInCohortDefinition <-
           by = "conceptSetId"
         )
     }
-    
+
     uniqueConceptSets <- conceptSetExpression |>
       dplyr::select(.data$conceptSetExpressionSignature) |>
       dplyr::distinct() |>
       dplyr::mutate(uniqueConceptSetId = dplyr::row_number())
-    
+
     conceptSetExpression <- conceptSetExpression |>
       dplyr::left_join(uniqueConceptSets, by = "conceptSetExpressionSignature") |>
       dplyr::select(-.data$conceptSetExpressionSignature)
-    
+
     data <- data |>
       tidyr::replace_na(replace = list(conceptSetUsedInEntryEvent = 0))
-    
+
     data <- data |>
       dplyr::left_join(conceptSetExpressionMetaData, by = "conceptSetId")
-    
+
     return(data)
   }
 

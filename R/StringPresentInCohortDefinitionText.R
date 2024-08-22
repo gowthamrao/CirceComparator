@@ -14,9 +14,9 @@ stringPresentInCohortDefinitionText <-
       stringr::str_trim() |>
       stringr::str_squish() |>
       stringr::str_detect(pattern = textToSearch |>
-                            tolower() |>
-                            stringr::str_trim() |>
-                            stringr::str_squish())
-    
+        tolower() |>
+        stringr::str_trim() |>
+        stringr::str_squish())
+
     return(output)
   }

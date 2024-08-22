@@ -13,9 +13,9 @@ getWhereAnObjectExistsInNestedList <- function(nestedList, object) {
       namedItems <- c(namedItems, names(nestedList)[[i]])
     }
   }
-  
+
   namedItemsDf <- dplyr::tibble()
-  
+
   if (length(namedItems) > 0) {
     namedItemsDf <-
       dplyr::tibble(namedItems = namedItems |> unique() |> sort()) |>

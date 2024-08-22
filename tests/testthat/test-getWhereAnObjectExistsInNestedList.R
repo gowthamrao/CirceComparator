@@ -42,9 +42,11 @@ test_that("Non-list input returns empty dataframe", {
 
 # Tests to check proper handling of unique and sorted names
 test_that("Sorting and uniqueness of locations", {
-  list5 <- list(a = list(x = 5),
-                a = list(x = 5),
-                c = list(x = 10))
+  list5 <- list(
+    a = list(x = 5),
+    a = list(x = 5),
+    c = list(x = 10)
+  )
   result <- getWhereAnObjectExistsInNestedList(list5, "x")
   expected <- tibble(criteriaLocationx = 1)
   expect_equal(result, expected)

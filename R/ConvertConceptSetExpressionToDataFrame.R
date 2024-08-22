@@ -32,19 +32,15 @@ convertConceptSetExpressionToDataFrame <-
         "Concept set expression was found to have a length of 0. No concept set expression found."
       )
     }
-    
+
     if ("items" %in% names(conceptSetExpression)) {
       items <- conceptSetExpression$items
     } else {
       items <- conceptSetExpression
     }
-    
+
     items2 <- list()
-    
-    errorMessage <-
-      "Given concept set expression R list object does not conform to expected structure. \n
-                      It is a vector that is more than 3 levels deep."
-    
+
     for (i in (1:length(items))) {
       df <- as.data.frame(items[[i]]) |>
         dplyr::tibble()
@@ -53,33 +49,33 @@ convertConceptSetExpressionToDataFrame <-
         pattern = "concept.",
         replacement = ""
       )
-      
-      if ('isExcluded' %in% names(df)) {
+
+      if ("isExcluded" %in% names(df)) {
         df <- df |>
           dplyr::rename("is_excluded" = "isExcluded")
-      } else if ('isexcluded' %in% names(df)) {
+      } else if ("isexcluded" %in% names(df)) {
         df <- df |>
           dplyr::rename("is_excluded" = "isexcluded")
       } else {
         df <- df |>
           dplyr::mutate(is_excluded = FALSE)
       }
-      
-      if ('includeMapped' %in% names(df)) {
+
+      if ("includeMapped" %in% names(df)) {
         df <- df |>
           dplyr::rename("include_mapped" = "includeMapped")
-      } else if ('includemapped' %in% names(df)) {
+      } else if ("includemapped" %in% names(df)) {
         df <- df |>
           dplyr::rename("include_mapped" = "includemapped")
       } else {
         df <- df |>
           dplyr::mutate(include_mapped = FALSE)
       }
-      
-      if ('includeDescendants' %in% names(df)) {
+
+      if ("includeDescendants" %in% names(df)) {
         df <- df |>
           dplyr::rename("include_descendants" = "includeDescendants")
-      } else if ('includedescendants' %in% names(df)) {
+      } else if ("includedescendants" %in% names(df)) {
         df <- df |>
           dplyr::rename("include_descendants" = "includedescendants")
       } else {
@@ -88,7 +84,7 @@ convertConceptSetExpressionToDataFrame <-
       }
       items2[[i]] <- df
     }
-    
+
     conceptSetExpressionDetails <- dplyr::bind_rows(items2) |>
       snakeCaseToCamelCaseNames() |>
       tidyr::replace_na(replace = list(
@@ -96,9 +92,9 @@ convertConceptSetExpressionToDataFrame <-
         includeDescendants = FALSE,
         includeMapped = FALSE
       ))
-    
+
     if ("standardConceptCaption" %in% colnames(conceptSetExpressionDetails) &&
-        !"standardConcept" %in% colnames(conceptSetExpressionDetails)) {
+      !"standardConcept" %in% colnames(conceptSetExpressionDetails)) {
       conceptSetExpressionDetails <- conceptSetExpressionDetails |>
         dplyr::mutate(
           standardConcept = dplyr::case_when(
@@ -108,7 +104,7 @@ convertConceptSetExpressionToDataFrame <-
         )
     }
     if ("standardConcept" %in% colnames(conceptSetExpressionDetails) &&
-        !"standardConceptCaption" %in% colnames(conceptSetExpressionDetails)) {
+      !"standardConceptCaption" %in% colnames(conceptSetExpressionDetails)) {
       conceptSetExpressionDetails <- conceptSetExpressionDetails |>
         dplyr::mutate(
           standardConceptCaption = dplyr::case_when(
@@ -118,12 +114,12 @@ convertConceptSetExpressionToDataFrame <-
           )
         )
     }
-    
+
     conceptSetExpressionDetails <- conceptSetExpressionDetails |>
       dplyr::relocate(dplyr::all_of(c(
         "includeDescendants", "includeMapped", "isExcluded"
       )), .after = dplyr::last_col()) |>
       dplyr::relocate("conceptId")
-    
+
     return(conceptSetExpressionDetails)
   }

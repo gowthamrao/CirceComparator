@@ -8,10 +8,10 @@
 getIndexConceptSetsInEntryEvents <- function(cohortDefinition) {
   conceptSetsInCohortDefinition <-
     extractConceptSetsInCohortDefinition(cohortDefinition)
-  
+
   cohortEntryEvents <-
     getNumberOfCohortEntryEvents(cohortDefinition = cohortDefinition)
-  
+
   conceptSetsInEntryEventCriteria <- c()
   for (i in (1:cohortEntryEvents)) {
     conceptSetsInEntryEventCriteria[[i]] <-
@@ -20,10 +20,11 @@ getIndexConceptSetsInEntryEvents <- function(cohortDefinition) {
         codeSetDomainName = names(cohortDefinition$PrimaryCriteria$CriteriaList[[i]])
       )
   }
-  
+
   conceptSetsInCohortDefinition <- conceptSetsInCohortDefinition |>
     dplyr::inner_join(conceptSetsInEntryEventCriteria |> dplyr::bind_rows(),
-                      by = "conceptSetId")
-  
+      by = "conceptSetId"
+    )
+
   return(conceptSetsInCohortDefinition)
 }

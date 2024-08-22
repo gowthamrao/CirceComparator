@@ -14,17 +14,17 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   cohortExit <- readCohortExit(cohortDefinition = cohortDefinition)
   numberOfInclusionRules <-
     getNumberOfInclusionRules(cohortDefinition = cohortDefinition)
-  
+
   initialEventLimit <-
     getInitialEventLimit(cohortDefinition = cohortDefinition)
-  
+
   initialEventRestrictionAdditionalCriteria <-
     hasInitialEventRestrictionAdditionalCriteria(cohortDefinition = cohortDefinition)
   # qualifying limit is part of entry event criteria. Its the second limit if initialEventRestrictionAdditionalCriteria Exits
   # this is the restrict initial events part of entry event criteria
   initialEventRestrictionAdditionalCriteriaLimit <-
     getInitialEventRestrictionAdditionalCriteriaLimit(cohortDefinition = cohortDefinition)
-  
+
   numberOfCohortEntryEvents <-
     getNumberOfCohortEntryEvents(cohortDefinition = cohortDefinition)
   domainsInEntryEventCriteria <-
@@ -33,7 +33,7 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
     getContinuousPriorObservationPeriodRequirement(cohortDefinition = cohortDefinition)
   numberOfConceptSets <-
     getNumberOfConceptSets(cohortDefinition = cohortDefinition)
-  
+
   demographicCriteria <-
     checkIfObjectExistsInNestedList(nestedList = cohortDefinition, object = "DemographicCriteriaList") |> as.integer()
   demographicCriteriaAge <-
@@ -43,60 +43,84 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   domainsInEntryEvents <-
     paste0(domainsInEntryEventCriteria$uniqueDomains, collapse = ", ")
   useOfObservationPeriodInclusionRule <-
-    checkIfObjectExistsInNestedList(nestedList = cohortDefinition,
-                                    object = "ObservationPeriod") |> as.integer()
+    checkIfObjectExistsInNestedList(
+      nestedList = cohortDefinition,
+      object = "ObservationPeriod"
+    ) |> as.integer()
   restrictedByVisit <-
     areCohortEventsRestrictedByVisit(cohortDefinition = cohortDefinition) |> as.integer()
-  
-  hasWashoutInText <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
-                                        textToSearch = "washout") |> as.integer()
-  
-  hasConditionStatusInPrimaryCriteria <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
-                                        textToSearch = "ConditionStatus") |> as.integer()
-  
-  hasConditionTypeInPrimaryCriteria <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
-                                        textToSearch = "ConditionType") |> as.integer()
-  
-  hasProcedureTypeInPrimaryCriteria <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
-                                        textToSearch = "ProcedureType") |> as.integer()
-  
-  hasObservationTypeInPrimaryCriteria <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
-                                        textToSearch = "ObservationType") |> as.integer()
-  
-  hasDrugTypeInPrimaryCriteria <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition$PrimaryCriteria,
-                                        textToSearch = "DrugType") |> as.integer()
 
-  
+  hasWashoutInText <-
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition,
+      textToSearch = "washout"
+    ) |> as.integer()
+
+  hasConditionStatusInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition$PrimaryCriteria,
+      textToSearch = "ConditionStatus"
+    ) |> as.integer()
+
+  hasConditionTypeInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition$PrimaryCriteria,
+      textToSearch = "ConditionType"
+    ) |> as.integer()
+
+  hasProcedureTypeInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition$PrimaryCriteria,
+      textToSearch = "ProcedureType"
+    ) |> as.integer()
+
+  hasObservationTypeInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition$PrimaryCriteria,
+      textToSearch = "ObservationType"
+    ) |> as.integer()
+
+  hasDrugTypeInPrimaryCriteria <-
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition$PrimaryCriteria,
+      textToSearch = "DrugType"
+    ) |> as.integer()
+
+
   hasConditionStatus <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
-                                        textToSearch = "ConditionStatus") |> as.integer()
-  
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition,
+      textToSearch = "ConditionStatus"
+    ) |> as.integer()
+
   hasConditionType <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
-                                        textToSearch = "ConditionType") |> as.integer()
-  
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition,
+      textToSearch = "ConditionType"
+    ) |> as.integer()
+
   hasProcedureType <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
-                                        textToSearch = "ProcedureType") |> as.integer()
-  
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition,
+      textToSearch = "ProcedureType"
+    ) |> as.integer()
+
   hasObservationType <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
-                                        textToSearch = "ObservationType") |> as.integer()
-  
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition,
+      textToSearch = "ObservationType"
+    ) |> as.integer()
+
   hasDrugType <-
-    stringPresentInCohortDefinitionText(cohortDefinition = cohortDefinition,
-                                        textToSearch = "DrugType") |> as.integer()
-  
-  
+    stringPresentInCohortDefinitionText(
+      cohortDefinition = cohortDefinition,
+      textToSearch = "DrugType"
+    ) |> as.integer()
+
+
   inclusionRuleQualifyingEventLimit <-
     getInclusionRuleQualifyingEventLimit(cohortDefinition = cohortDefinition)
-  
+
   report <- dplyr::tibble(
     censorWindowStartDate =
       (if (length(censorWindow$censorWindowStartDate) > 0) {
@@ -149,12 +173,12 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
     hasObservationType = hasObservationType,
     hasDrugType = hasDrugType
   )
-  
+
   if (nrow(domainsInEntryEventCriteria$domains) > 0) {
     report <- report |>
       tidyr::crossing(domainsInEntryEventCriteria$domains)
   }
-  
+
   sourceDomains <-
     c(
       "ProcedureSourceConcept",
@@ -166,8 +190,10 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
       "DeathSourceConcept",
       "MeasurementSourceConcept"
     )
-  demographics <- c("Age",
-                    "Gender")
+  demographics <- c(
+    "Age",
+    "Gender"
+  )
   typeConcepts <- c("VisitType")
   # measurement <-
   #   c(
@@ -181,7 +207,7 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   #     "RangeHighRatio"
   #   )
   other <- c("PlaceOfServiceCS", "ProviderSpecialty", "First")
-  
+
   combined <-
     c(sourceDomains, demographics, typeConcepts, other) |> unique()
   for (i in (1:length(combined))) {
@@ -192,18 +218,20 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
         tidyr::crossing(whereExists)
     }
   }
-  
+
   report <- report |>
-    dplyr::mutate(eventCohort =
-                    dplyr::if_else(
-                      condition = (
-                        initialEventLimit == "All" &
-                          initialEventRestrictionAdditionalCriteriaLimit == "All" &
-                          inclusionRuleQualifyingEventLimit == "All"
-                      ),
-                      true = 1,
-                      false = 0
-                    ))
-  
+    dplyr::mutate(
+      eventCohort =
+        dplyr::if_else(
+          condition = (
+            initialEventLimit == "All" &
+              initialEventRestrictionAdditionalCriteriaLimit == "All" &
+              inclusionRuleQualifyingEventLimit == "All"
+          ),
+          true = 1,
+          false = 0
+        )
+    )
+
   return(report)
 }

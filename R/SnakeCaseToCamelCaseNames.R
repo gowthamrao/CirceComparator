@@ -1,10 +1,10 @@
-snakeCaseToCamelCaseNames <- function (object) {
+snakeCaseToCamelCaseNames <- function(object) {
   names(object) <- snakeCaseToCamelCase(names(object))
   return(object)
 }
 
 
-snakeCaseToCamelCase <- function (string) {
+snakeCaseToCamelCase <- function(string) {
   string <- tolower(string)
   for (letter in letters) {
     string <- gsub(paste("_", letter, sep = ""), toupper(letter), string)
