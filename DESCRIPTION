@@ -1,6 +1,6 @@
 Package: CirceComparator
 Type: Package
-Title: CirceComparator: To enable comparison of two or more circe compatible cohort definitions.
+Title: CirceComparator: Review or Compare Circe Cohort Expressions
 Version: 0.0.1
 Date: 2024-07-24
 Authors@R: c(
@@ -8,13 +8,17 @@ Authors@R: c(
     person("Observational Health Data Science and Informatics", role = c("cph"))
   )
 Maintainer: Gowtham Rao <rao@ohdsi.org>
-Description: The CirceComparator R package performs pair wise comparison of one or more cohort definitions generated with circe to help surface similarities and differences.
+Description: The CirceComparator R package provides detailed insights into a single Circe cohort expression, including concept sets, entry event criteria, and exit criteria, all presented in tabular form. It also supports pairwise comparison of multiple Circe cohort definitions to highlight similarities and differences.
 Depends:
-	DatabaseConnector (>= 5.0.0),
 	R (>= 4.1.0)
 Imports:
-    dplyr
+    dplyr,
+    RJSONIO,
+    rlang,
+    stringr,
+    tidyr
 Suggests:
+  knitr,
 	testthat
 Remotes:
 License: Apache License

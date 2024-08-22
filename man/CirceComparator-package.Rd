@@ -3,11 +3,11 @@
 \docType{package}
 \name{CirceComparator-package}
 \alias{CirceComparator-package}
-\title{CirceComparator: CirceComparator: To enable comparison of two or more circe compatible cohort definitions.}
+\title{CirceComparator: CirceComparator: Review or Compare Circe Cohort Expressions}
 \description{
-The CirceComparator R package performs pair wise comparison of one or more cohort definitions generated with circe to help surface similarities and differences.
+The CirceComparator R package provides detailed insights into a single Circe cohort expression, including concept sets, entry event criteria, and exit criteria, all presented in tabular form. It also supports pairwise comparison of multiple Circe cohort definitions to highlight similarities and differences.
 
-The CirceComparator R package performs pair wise comparison of one or more cohort definitions generated with circe to help surface similarities and differences.
+The CirceComparator R package provides detailed insights into a single Circe cohort expression, including concept sets, entry event criteria, and exit criteria, all presented in tabular form. It also supports pairwise comparison of multiple Circe cohort definitions to highlight similarities and differences.
 }
 \seealso{
 Useful links:
