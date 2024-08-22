@@ -4,10 +4,10 @@
 \alias{extractPathsAndDepths}
 \title{Extract Paths and Depths from a Nested List}
 \usage{
-extractPathsAndDepths(lst, currentPath = "", depth = 1, item = NULL)
+extractPathsAndDepths(nestedList, currentPath = "", depth = 1, item = NULL)
 }
 \arguments{
-\item{lst}{A nested list object from which to extract paths and depths.}
+\item{nestedList}{A nested list object from which to extract paths and depths.}
 
 \item{currentPath}{A character string representing the current path during recursion.
 Defaults to an empty string. This parameter is primarily used internally by the function.}
@@ -26,5 +26,6 @@ and each value represents the depth of that element within the nested structure.
 \description{
 This function recursively traverses a nested list in R and returns the paths
 and depths of each element. Optionally, you can filter the results to only
-include elements with a specific name.
+include elements with a specific name. Unnamed elements are represented by
+a special character "_".
 }

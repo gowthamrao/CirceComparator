@@ -211,8 +211,9 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   combined <-
     c(sourceDomains, demographics, typeConcepts, other) |> unique()
   for (i in (1:length(combined))) {
+    browser()
     whereExists <-
-      getWhereAnObjectExistsInNestedList(nestedList = cohortDefinition, object = combined[[i]])
+      extractPathsDepthsAndValues(nestedList = cohortDefinition, object = combined[[i]])
     
     browser()
     
