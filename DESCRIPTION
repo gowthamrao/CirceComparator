@@ -16,6 +16,7 @@ Imports:
     RJSONIO,
     rlang,
     stringr,
+    tibble,
     tidyr
 Suggests:
   knitr,

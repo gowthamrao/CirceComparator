@@ -4,12 +4,21 @@
 \alias{stringPresentInCohortDefinitionText}
 \title{Check if a string is present in a cohort definition text}
 \usage{
-stringPresentInCohortDefinitionText(cohortDefinition, textToSearch)
+stringPresentInCohortDefinitionText(
+  cohortDefinition,
+  textToSearch,
+  negate = FALSE,
+  caseInsensitve = TRUE
+)
 }
 \arguments{
 \item{cohortDefinition}{A list representing the cohort definition, which will be converted to JSON.}
 
 \item{textToSearch}{A character string to search for within the cohort definition text.}
+
+\item{negate}{If TRUE, checks for the absence of text.}
+
+\item{caseInsensitve}{If TRUE, looks for textToSearch in case insensitive manner.}
 }
 \value{
 A logical value indicating whether the textToSearch is present in the cohort definition text.
