@@ -1,6 +1,6 @@
-Package: CirceComparator
+Package: CohortDefinitionReviewer
 Type: Package
-Title: CirceComparator: Review or Compare Circe Cohort Expressions
+Title: CohortDefinitionReviewer: Review or Compare Circe Cohort Expressions
 Version: 0.0.1
 Date: 2024-07-24
 Authors@R: c(
@@ -8,7 +8,7 @@ Authors@R: c(
     person("Observational Health Data Science and Informatics", role = c("cph"))
   )
 Maintainer: Gowtham Rao <rao@ohdsi.org>
-Description: The CirceComparator R package provides detailed insights into a single Circe cohort expression, including concept sets, entry event criteria, and exit criteria, all presented in tabular form. It also supports pairwise comparison of multiple Circe cohort definitions to highlight similarities and differences.
+Description: The CohortDefinitionReviewer R package provides detailed insights into a single Circe cohort expression, including concept sets, entry event criteria, and exit criteria, all presented in tabular form. It also supports pairwise comparison of multiple Circe cohort definitions to highlight similarities and differences.
 Depends:
 	R (>= 4.1.0)
 Imports:
@@ -28,5 +28,5 @@ VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8
 Language: en-US
-URL: https://ohdsi.github.io/CirceComparator/, https://github.com/OHDSI/CirceComparator
-BugReports: https://github.com/OHDSI/CirceComparator/issues
+URL: https://ohdsi.github.io/CohortDefinitionReviewer/, https://github.com/OHDSI/CohortDefinitionReviewer
+BugReports: https://github.com/OHDSI/CohortDefinitionReviewer/issues

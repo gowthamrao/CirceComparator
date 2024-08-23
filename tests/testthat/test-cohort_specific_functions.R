@@ -2,6 +2,7 @@ library(testthat)
 
 test_that("parseCohortDefinitionSpecifications", {
   observed <- parseCohortDefinitionSpecifications(cohortDefinition = cohort14907)
+  expect_equal(nrow(observed), 1)
 })
 
 test_that("stringPresentInCohortDefinitionText", {
@@ -25,6 +26,7 @@ test_that("readCohortExit", {
 
 test_that("readCensorWindow", {
   observed <- readCensorWindow(cohortDefinition = cohort14907)
+  expect_equal(observed, NULL)
 })
 
 test_that("hasInitialEventRestrictionAdditionalCriteria", {

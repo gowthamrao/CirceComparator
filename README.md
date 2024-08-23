@@ -1,16 +1,16 @@
-CirceComparator
+CohortDefinitionReviewer
 ================
 
 
-[![Build Status](https://github.com/OHDSI/CirceComparator/workflows/R-CMD-check/badge.svg)](https://github.com/OHDSI/CirceComparator/actions?query=workflow%3AR-CMD-check)
-[![codecov.io](https://codecov.io/github/OHDSI/CirceComparator/coverage.svg?branch=main)](https://codecov.io/github/OHDSI/CirceComparator?branch=main)
+[![Build Status](https://github.com/OHDSI/CohortDefinitionReviewer/workflows/R-CMD-check/badge.svg)](https://github.com/OHDSI/CohortDefinitionReviewer/actions?query=workflow%3AR-CMD-check)
+[![codecov.io](https://codecov.io/github/OHDSI/CohortDefinitionReviewer/coverage.svg?branch=main)](https://codecov.io/github/OHDSI/CohortDefinitionReviewer?branch=main)
 
 Introduction
 ============
 
 THIS PACKAGE IS UNDER ACTIVE DEVELOPMENT. IT IS NOT PART OF HADES.
 
-CirceComparator is an R package designed to understand medication compliance and persistence in cohort studies. 
+CohortDefinitionReviewer is an R package designed to understand medication compliance and persistence in cohort studies. 
 
 Features
 ========
@@ -21,7 +21,7 @@ Features
 
 Technology
 ============
-CirceComparator is an R package.
+CohortDefinitionReviewer is an R package.
 
 System Requirements
 ============
@@ -31,24 +31,24 @@ Installation
 =============
 1. See the instructions [here](https://ohdsi.github.io/Hades/rSetup.html) for configuring your R environment, including RTools and Java.
 
-2. In R, use the following commands to download and install CirceComparator:
+2. In R, use the following commands to download and install CohortDefinitionReviewer:
 
   ```r
   install.packages("remotes")
-  remotes::install_github("ohdsi/CirceComparator")
+  remotes::install_github("ohdsi/CohortDefinitionReviewer")
   ```
 
 User Documentation
 ==================
-Documentation can be found on the [package website](https://ohdsi.github.io/CirceComparator).
+Documentation can be found on the [package website](https://ohdsi.github.io/CohortDefinitionReviewer).
 
 PDF versions of the documentation are also available:
-* Package manual: [CirceComparator.pdf](https://raw.githubusercontent.com/OHDSI/CirceComparator/main/extras/CirceComparator.pdf)
+* Package manual: [CohortDefinitionReviewer.pdf](https://raw.githubusercontent.com/OHDSI/CohortDefinitionReviewer/main/extras/CohortDefinitionReviewer.pdf)
 
 Support
 =======
 * Developer questions/comments/feedback: <a href="http://forums.ohdsi.org/c/developers">OHDSI Forum</a>
-* We use the <a href="https://github.com/OHDSI/CirceComparator/issues">GitHub issue tracker</a> for all bugs/issues/enhancements
+* We use the <a href="https://github.com/OHDSI/CohortDefinitionReviewer/issues">GitHub issue tracker</a> for all bugs/issues/enhancements
 
 Contributing
 ============
@@ -56,12 +56,12 @@ Read [here](https://ohdsi.github.io/Hades/contribute.html) how you can contribut
 
 License
 =======
-CirceComparator is licensed under Apache License 2.0
+CohortDefinitionReviewer is licensed under Apache License 2.0
 
 Development
 ===========
-CirceComparator is being developed in R Studio.
+CohortDefinitionReviewer is being developed in R Studio.
 
 ### Development status
 
-CirceComparator is under development.
+CohortDefinitionReviewer is under development.

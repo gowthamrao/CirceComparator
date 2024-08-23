@@ -1,6 +1,6 @@
 # Copyright 2024 Observational Health Data Sciences and Informatics
 #
-# This file is part of CirceComparator
+# This file is part of CohortDefinitionReviewer
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -16,12 +16,12 @@
 
 # Format and check code ---------------------------------------------------
 styler::style_pkg()
-OhdsiRTools::checkUsagePackage("CirceComparator")
+OhdsiRTools::checkUsagePackage("CohortDefinitionReviewer")
 OhdsiRTools::updateCopyrightYearFolder()
 
 # Create manual -----------------------------------------------------------
-unlink("extras/CirceComparator.pdf")
-shell("R CMD Rd2pdf ./ --output=extras/CirceComparator.pdf")
+unlink("extras/CohortDefinitionReviewer.pdf")
+shell("R CMD Rd2pdf ./ --output=extras/CohortDefinitionReviewer.pdf")
 
 # Create Vignettes---------------------------------------------------------
 
