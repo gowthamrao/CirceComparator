@@ -9,9 +9,12 @@
 parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   censorWindow <-
     readCensorWindow(cohortDefinition = cohortDefinition)
+
   collapseSettings <-
     readCollapseSettings(cohortDefinition = cohortDefinition)
+
   cohortExit <- readCohortExit(cohortDefinition = cohortDefinition)
+
   numberOfInclusionRules <-
     getNumberOfInclusionRules(cohortDefinition = cohortDefinition)
 
@@ -20,6 +23,7 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
 
   initialEventRestrictionAdditionalCriteria <-
     hasInitialEventRestrictionAdditionalCriteria(cohortDefinition = cohortDefinition)
+
   # qualifying limit is part of entry event criteria. Its the second limit if initialEventRestrictionAdditionalCriteria Exits
   # this is the restrict initial events part of entry event criteria
   initialEventRestrictionAdditionalCriteriaLimit <-
@@ -42,11 +46,13 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
     checkIfObjectExistsInNestedList(nestedList = cohortDefinition, object = "Gender") |> as.integer()
   domainsInEntryEvents <-
     paste0(domainsInEntryEventCriteria$uniqueDomains, collapse = ", ")
+
   useOfObservationPeriodInclusionRule <-
     checkIfObjectExistsInNestedList(
       nestedList = cohortDefinition,
       object = "ObservationPeriod"
     ) |> as.integer()
+
   restrictedByVisit <-
     areCohortEventsRestrictedByVisit(cohortDefinition = cohortDefinition) |> as.integer()
 
@@ -85,7 +91,6 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
       cohortDefinition = cohortDefinition$PrimaryCriteria,
       textToSearch = "DrugType"
     ) |> as.integer()
-
 
   hasConditionStatus <-
     stringPresentInCohortDefinitionText(
@@ -190,6 +195,7 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
       "DeathSourceConcept",
       "MeasurementSourceConcept"
     )
+
   demographics <- c(
     "Age",
     "Gender"
@@ -211,13 +217,11 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   combined <-
     c(sourceDomains, demographics, typeConcepts, other) |> unique()
   for (i in (1:length(combined))) {
-    browser()
     whereExists <-
       extractPathsDepthsAndValues(nestedList = cohortDefinition, item = combined[[i]])
 
-    browser()
-
     if (nrow(whereExists) > 0) {
+      browser()
       report <- report |>
         tidyr::crossing(whereExists)
     }

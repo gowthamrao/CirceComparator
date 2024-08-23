@@ -6,23 +6,18 @@
 #' @return A list containing the parsed collapse settings, including `collapseType` and `eraPad`.
 #' @export
 readCollapseSettings <- function(cohortDefinition) {
-  
-  debug(extractPathsDepthsAndValues)
   pathDepthsAndValues <- extractPathsDepthsAndValues(nestedList = cohortDefinition)
-  
-  
-  
+
   output <- list()
   output$collapseType <-
-    pathDepthsAndValues |> 
+    pathDepthsAndValues |>
     dplyr::filter(path == "CollapseSettings$CollapseType") |>
     dplyr::pull(value)
-  
-  output$eraPad <- 
-    pathDepthsAndValues |> 
-    dplyr::filter(path == "CollapseSettings$CollapseType") |>
+
+  output$eraPad <-
+    pathDepthsAndValues |>
+    dplyr::filter(path == "CollapseSettings$EraPad") |>
     dplyr::pull(value)
-  
-  cohortDefinition$CollapseSettings$EraPad
+
   return(output)
 }

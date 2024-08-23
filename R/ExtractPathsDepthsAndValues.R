@@ -28,11 +28,11 @@ extractPathsDepthsAndValues <- function(nestedList,
     depth = depth,
     item = item
   )
-  
+
   results <- results |>
     tibble::rownames_to_column(var = "rowName") |>
     dplyr::tibble()
-  
+
   return(results)
 }
 
@@ -45,7 +45,7 @@ extractPathsDepthsAndValuesPrivate <- function(nestedList, currentPath, depth, i
     value = character(0),
     stringsAsFactors = FALSE
   )
-  
+
   for (i in seq_along(nestedList)) {
     name <- names(nestedList)[i]
     if (is.null(name) || name == "") {
@@ -56,7 +56,7 @@ extractPathsDepthsAndValuesPrivate <- function(nestedList, currentPath, depth, i
     } else {
       paste0(currentPath, "$", name)
     }
-    
+
     if (is.list(nestedList[[i]])) {
       # Recurse into the nested list
       results <- rbind(
@@ -78,6 +78,6 @@ extractPathsDepthsAndValuesPrivate <- function(nestedList, currentPath, depth, i
       }
     }
   }
-  
+
   return(results)
 }

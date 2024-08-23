@@ -7,6 +7,11 @@
 #' @export
 hasInitialEventRestrictionAdditionalCriteria <-
   function(cohortDefinition) {
-    # this is the second or additional criteria that are part of entry event criteria
-    checkIfObjectExistsInNestedList(nestedList = cohortDefinition, object = "AdditionalCriteria")
+    pathDepthsAndValues <- extractPathsDepthsAndValues(nestedList = cohortDefinition)
+
+    result <- pathDepthsAndValues |>
+      dplyr::filter(stringr::str_detect(string = .data$path, pattern = "AdditionalCriteria")) |>
+      nrow() > 1
+
+    return(result)
   }

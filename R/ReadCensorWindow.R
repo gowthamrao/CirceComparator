@@ -6,12 +6,20 @@
 #' @return A list containing the parsed censor window start and end dates.
 #' @export
 readCensorWindow <- function(cohortDefinition) {
-  censorWindowStartDate <-
-    as.Date(cohortDefinition$CensorWindow[["StartDate"]])
-  censorWindowStartDate <-
-    as.Date(cohortDefinition$CensorWindow[["EndDate"]])
   output <- c()
-  output$censorWindowStartDate <- censorWindowStartDate
-  output$censorWindowEndDateDate <- censorWindowStartDate
+
+  if (!is.null(cohortDefinition$CensorWindow[["StartDate"]])) {
+    output$censorWindowStartDate <-
+      as.Date(cohortDefinition$CensorWindow[["StartDate"]])
+  }
+
+  if (!is.null(cohortDefinition$CensorWindow[["EndDate"]])) {
+    output$censorWindowEndDateDate <-
+      as.Date(cohortDefinition$CensorWindow[["EndDate"]])
+  }
+
+  if (length(output) == 0) {
+    output <- NULL
+  }
   return(output)
 }

@@ -14,20 +14,20 @@ stringPresentInCohortDefinitionText <-
            negate = FALSE,
            caseInsensitve = TRUE) {
     pathDepthsAndValues <- extractPathsDepthsAndValues(nestedList = cohortDefinition)
-    
+
     if (caseInsensitve) {
       pathDepthsAndValues <- pathDepthsAndValues |>
         dplyr::mutate(value = tolower(value))
-      
-      textToSearch = tolower(textToSearch)
+
+      textToSearch <- tolower(textToSearch)
     }
-    
+
     output <- pathDepthsAndValues |>
       dplyr::filter(stringr::str_detect(
         string = value,
         pattern = textToSearch,
         negate = negate
       ))
-    
+
     return(nrow(output) > 0)
   }
