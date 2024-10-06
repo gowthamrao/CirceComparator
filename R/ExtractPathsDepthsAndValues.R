@@ -39,14 +39,10 @@ extractPathsDepthsAndValues <- function(nestedList,
 
 
 extractPathsDepthsAndValuesPrivate <- function(nestedList, currentPath, depth, item) {
-  results <- data.frame(
-    path = character(0),
-    depth = integer(0),
-    value = character(0),
-    stringsAsFactors = FALSE
-  )
-
+  results <- list()  # Initialize an empty list to store results
+  
   for (i in seq_along(nestedList)) {
+    
     name <- names(nestedList)[i]
     if (is.null(name) || name == "") {
       name <- "_" # Use "_" for unnamed elements
@@ -56,28 +52,42 @@ extractPathsDepthsAndValuesPrivate <- function(nestedList, currentPath, depth, i
     } else {
       paste0(currentPath, "$", name)
     }
-
+    
     if (is.list(nestedList[[i]])) {
       # Recurse into the nested list
-      results <- rbind(
-        results,
-        extractPathsDepthsAndValuesPrivate(nestedList[[i]], newPath, depth + 1, item)
-      )
+      nestedResults <- extractPathsDepthsAndValuesPrivate(nestedList[[i]], newPath, depth + 1, item)
+      results <- append(results, list(nestedResults))
     } else {
       # Store the path, depth, and value only if the name matches the item, or if item is NULL
       if (is.null(item) || name == item) {
-        results <- rbind(
-          results,
+        results <- append(results, list(
           data.frame(
             path = newPath,
             depth = depth,
-            value = nestedList[[i]],
+            value = if (length(nestedList[[i]]) == 0) {
+              ""  # Return an empty string if nestedList[[i]] is character(0)
+            } else {
+              dplyr::coalesce(as.character(nestedList[[i]]), "")
+            },
             stringsAsFactors = FALSE
           )
-        )
+        ))
       }
     }
   }
-
-  return(results)
+  
+  # Combine all list elements into a single data frame
+  if (length(results) > 0) {
+    return(do.call(rbind, results))
+  } else {
+    return(
+      data.frame(
+        path = character(0),
+        depth = integer(0),
+        value = character(0),
+        stringsAsFactors = FALSE
+      )
+    )
+  }
 }
+

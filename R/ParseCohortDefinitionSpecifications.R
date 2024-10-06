@@ -217,13 +217,29 @@ parseCohortDefinitionSpecifications <- function(cohortDefinition) {
   combined <-
     c(sourceDomains, demographics, typeConcepts, other) |> unique()
   for (i in (1:length(combined))) {
+    
     whereExists <-
-      extractPathsDepthsAndValues(nestedList = cohortDefinition, item = combined[[i]])
-
+      extractPathsDepthsAndValues(nestedList = cohortDefinition, item = combined[[i]]) |>
+      dplyr::distinct()
+    
+    df <- dplyr::tibble(variable = combined) |>
+      dplyr::filter(variable == combined[[i]])
+    
     if (nrow(whereExists) > 0) {
-      browser()
       report <- report |>
-        tidyr::crossing(whereExists)
+        tidyr::crossing(
+          df |>
+            dplyr::mutate(value = 1) |>
+            tidyr::pivot_wider(names_from = variable, values_from =  value)
+        )
+    } else {
+      report <- report |>
+        tidyr::crossing(
+          df |>
+            dplyr::mutate(value = 0) |>
+            tidyr::pivot_wider(names_from = variable, values_from =  value)
+        )
+      
     }
   }
 
